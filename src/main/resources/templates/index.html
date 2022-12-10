@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<style>
+body {
+background-color: #dce1e8;
+}
+@media (max-width: 990px) {
+  html {
+  font-size: 55%;
+  }
+}
+@media (max-width: 768px) {
+  html {
+  font-size: 45%;
+  }
+}
+
+</style>
+
+
+<title>Home page</title>
+
+</head>
+<body>
+
+	<!-- Navbar -->
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">EMP System</a>
+
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link" href="indexemp">Home
+						
+				</a></li>
+				<li class="nav-item active"><a class="nav-link" href="addemp">Add
+						EMP</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Navbar -->
+
+	<div class="container p-5">
+	<form action="display">
+	<input  type="submit" 
+	value="view Employees"
+	class="btn btn-sm btn-primary"
+	/>
+	</form>
+		<table class="table table-striped" border="1">
+			<thead class="bg-primary text-white">
+				<tr>
+					<th align="center" scope="col">Id</th>
+					<th align="center" scope="col">Name</th>
+					<th align="center" scope="col">email</th>
+					<th align="center" scope="col">dob</th>
+					<th align="center" scope="col">age</th>
+					<th align="center" scope="col">Salary</th>
+					<th align="center" scope="col">Status</th>
+					<th align="center" scope="col">Action</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="e : ${emp}">
+					<th th:text="${e.id}">1</th>
+					<td th:text="${e.name}"></td>
+					<td th:text="${e.email}"></td>
+					<td th:text="${e.dob}"></td>
+					<td th:text="${e.age}"></td>
+					<td th:text="${e.salary}"></td>
+					<td th:text="${e.status}"></td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/edit/{id}(id=${e.id})}">Edit</a> <a
+						class="btn btn-sm btn-danger"
+						th:href="@{/delete/{id}(id=${e.id})}" onclick="deleteMsg(event)" >Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+      
+	</div>
+</body>
+</html>

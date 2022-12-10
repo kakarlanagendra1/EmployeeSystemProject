@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<title>Home page</title>
+<style>
+body {
+background-color: #dce1e8;
+}
+@media (max-width: 990px) {
+  html {
+  font-size: 55%;
+  }
+}
+@media (max-width: 768px) {
+  html {
+  font-size: 45%;
+  }
+}
+</style>
+</head>
+<body>
+
+	<!-- Navbar -->
+
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">EMPLOYEE MANAGEMENT SYSTEM</a>
+	</nav>
+
+	<!-- Navbar -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="text-center text-primary">Edit Emp</h4>
+
+						<form th:action="@{/update}" method="post" th:object="${emp}">
+
+							<input type="hidden" th:value="${emp.id}" name="id">
+
+							<div class="form-group">
+								<label>Enter Full Name</label> <input type="text"
+									class="form-control" name="name" th:value="${emp.name}">
+							</div>
+
+							<div class="form-group">
+								<label>Enter Email</label> <input type="text"
+									class="form-control" name="email" th:value="${emp.email}">
+							</div>
+
+							<div class="form-group">
+								<label>Enter dob</label> <input type="date" class="form-control"
+									id="dob" name="dob" th:value="${emp.dob}">
+							</div>
+
+
+							<div class="form-group">
+								<label>Enter age</label> <input type="number"
+									onmousemove="calculateAge()" id="age" class="form-control" name="age" th:value="${emp.age}">
+							</div>
+
+
+							<div class="form-group">
+								<label>Enter Salary</label> <input type="number"
+									class="form-control" name="salary" th:value="${emp.salary}">
+							</div>
+
+							<div class="form-group">
+								<label>Enter Status</label> <input type="checkbox"
+									class="form-control" name="status" th:value="${emp.status}">
+							</div>
+
+							<button class="btn btn-primary btn-block">Submit</button>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div> 
+	<script>
+	function calculateAge() 
+	{
+	  var dob = document.getElementById("dob").value;
+	  const now = new Date(dob);
+	  var today = new Date();
+	  var AGE = today.getTime()-now.getTime();
+	   AGE = Math.floor(AGE / (1000 * 60 * 60 * 24 * 365.25)); 
+	   document.getElementById("age").value = AGE;
+	}
+  </script>
+</body>
+</html>
